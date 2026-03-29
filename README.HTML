@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Tahlilan – Almarhum Saleh Eksan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-dark:   #1a3d24;
+      --green-mid:    #2c5f3a;
+      --green-light:  #3d7a4e;
+      --gold:         #c9a227;
+      --gold-light:   #e8c96a;
+      --cream:        #faf5ec;
+      --cream-dark:   #f0e6d0;
+      --brown:        #6b4c2a;
+      --brown-light:  #9a7d5a;
+      --text-dark:    #1e130a;
+      --text-mid:     #4a3520;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #0f1f14;
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(44,95,58,0.35) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(44,95,58,0.25) 0%, transparent 50%);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Particles ── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-up var(--dur, 8s) var(--delay, 0s) ease-in infinite;
+    }
+    @keyframes float-up {
+      0%   { opacity: 0; transform: translateY(0) translateX(0); }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.2; }
+      100% { opacity: 0; transform: translateY(-100vh) translateX(var(--drift, 20px)); }
+    }
+
+    /* ── Main wrapper ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 16px 60px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--cream);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px var(--gold),
+        0 0 0 5px rgba(201,162,39,0.15),
+        0 20px 80px rgba(0,0,0,0.6),
+        0 4px 20px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: card-in 1.2s 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes card-in {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Hero Banner ── */
+    .hero {
+      background: var(--green-dark);
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 18px,
+          rgba(255,255,255,0.018) 18px,
+          rgba(255,255,255,0.018) 19px
+        );
+      padding: 44px 28px 36px;
+      text-align: center;
+      position: relative;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    /* Corner flourishes */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      width: 70px; height: 70px;
+      border-color: var(--gold);
+      border-style: solid;
+      opacity: 0.5;
+    }
+    .hero::before {
+      top: 10px; left: 10px;
+      border-width: 2px 0 0 2px;
+    }
+    .hero::after {
+      top: 10px; right: 10px;
+      border-width: 2px 2px 0 0;
+    }
+    .hero-corner-bl, .hero-corner-br {
+      position: absolute;
+      width: 70px; height: 70px;
+      border-color: var(--gold);
+      border-style: solid;
+      opacity: 0.5;
+    }
+    .hero-corner-bl { bottom: 18px; left: 10px; border-width: 0 0 2px 2px; }
+    .hero-corner-br { bottom: 18px; right: 10px; border-width: 0 2px 2px 0; }
+
+    .bismillah {
+      font-family: 'Amiri', serif;
+      font-size: clamp(22px, 5vw, 32px);
+      color: var(--gold-light);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 12px rgba(201,162,39,0.4);
+      animation: glow-text 3s ease-in-out infinite alternate;
+    }
+    @keyframes glow-text {
+      from { text-shadow: 0 2px 12px rgba(201,162,39,0.3); }
+      to   { text-shadow: 0 2px 20px rgba(201,162,39,0.7), 0 0 40px rgba(201,162,39,0.2); }
+    }
+
+    .bismillah-latin {
+      font-size: 10px;
+      color: rgba(232,201,106,0.65);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,162,39,0.15);
+      border: 1px solid rgba(201,162,39,0.4);
+      color: var(--gold-light);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 1px;
+      margin-bottom: 22px;
+    }
+
+    /* ── Ornament divider ── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 18px 0;
+    }
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.5;
+    }
+    .ornament svg { flex-shrink: 0; }
+
+    /* ── Body content ── */
+    .body { padding: 28px 32px; }
+
+    .announce {
+      text-align: center;
+      font-size: 13px;
+      color: var(--brown-light);
+      line-height: 2;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Name plate ── */
+    .name-plate {
+      background: var(--green-dark);
+      background-image:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 12px,
+          rgba(255,255,255,0.015) 12px,
+          rgba(255,255,255,0.015) 13px
+        );
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      padding: 22px 24px;
+      text-align: center;
+      margin: 18px -4px;
+      position: relative;
+    }
+    .name-plate::before, .name-plate::after {
+      content: '❖';
+      position: absolute;
+      color: var(--gold);
+      font-size: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.7;
+    }
+    .name-plate::before { left: 16px; }
+    .name-plate::after  { right: 16px; }
+
+    .alm-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(232,201,106,0.7);
+      margin-bottom: 8px;
+    }
+
+    .name-main {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 6vw, 36px);
+      color: #f0e6c0;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .wafat-line {
+      margin-top: 10px;
+      font-size: 11.5px;
+      color: rgba(232,201,106,0.6);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Innalillahi ── */
+    .inna {
+      text-align: center;
+      margin: 16px 0;
+    }
+    .inna-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 20px;
+      color: var(--green-mid);
+      margin-bottom: 4px;
+    }
+    .inna-latin {
+      font-size: 11px;
+      color: var(--brown-light);
+      font-style: italic;
+    }
+
+    /* ── Info grid ── */
+    .info-section {
+      background: rgba(44, 95, 58, 0.06);
+      border: 1px solid rgba(201,162,39,0.3);
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 18px 0;
+    }
+
+    .info-header {
+      background: var(--green-mid);
+      padding: 8px 16px;
+      text-align: center;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(232,201,106,0.9);
+      font-weight: 700;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(201,162,39,0.15);
+      transition: background 0.2s;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row:hover { background: rgba(44,95,58,0.05); }
+
+    .info-icon {
+      width: 36px; height: 36px;
+      background: var(--green-mid);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(201,162,39,0.4);
+    }
+    .info-icon svg { width: 16px; height: 16px; fill: var(--gold-light); }
+
+    .info-text { flex: 1; }
+    .info-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .info-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+    .info-sub {
+      font-size: 11.5px;
+      color: var(--brown-light);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    /* ── Kegiatan ── */
+    .kegiatan-title {
+      text-align: center;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      font-weight: 700;
+      margin: 20px 0 10px;
+    }
+
+    .kegiatan-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .kegiatan-item {
+      background: var(--green-dark);
+      border: 1px solid rgba(201,162,39,0.35);
+      border-radius: 2px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .kegiatan-num {
+      width: 22px; height: 22px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--green-dark);
+      flex-shrink: 0;
+    }
+
+    .kegiatan-name {
+      font-size: 11.5px;
+      color: rgba(240,230,192,0.9);
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Hadir section ── */
+    .hadir {
+      background: rgba(201,162,39,0.08);
+      border: 1px dashed rgba(201,162,39,0.35);
+      border-radius: 2px;
+      padding: 14px 18px;
+      text-align: center;
+      margin: 18px 0 0;
+    }
+    .hadir p {
+      font-size: 12.5px;
+      color: var(--brown);
+      line-height: 1.8;
+      font-style: italic;
+    }
+    .hadir strong {
+      color: var(--green-mid);
+      font-style: normal;
+    }
+
+    /* ── Keluarga band ── */
+    .keluarga {
+      background: var(--cream-dark);
+      border-top: 2px solid var(--gold);
+      padding: 22px 32px;
+      text-align: center;
+    }
+
+    .keluarga-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .keluarga-names {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(14px, 3vw, 18px);
+      color: var(--green-dark);
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .keluarga-note {
+      margin-top: 10px;
+      font-size: 11.5px;
+      color: var(--brown-light);
+      font-style: italic;
+    }
+
+    /* ── Doa band ── */
+    .doa {
+      background: var(--green-dark);
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 18px,
+          rgba(255,255,255,0.015) 18px,
+          rgba(255,255,255,0.015) 19px
+        );
+      border-top: 2px solid var(--gold);
+      padding: 28px 32px;
+      text-align: center;
+    }
+
+    .doa-arabic {
+      font-family: 'Amiri', serif;
+      font-size: clamp(20px, 4vw, 28px);
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-shadow: 0 1px 6px rgba(201,162,39,0.3);
+    }
+
+    .doa-latin {
+      font-size: 12px;
+      color: rgba(240,230,192,0.75);
+      font-style: italic;
+      line-height: 1.9;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #0e1a10;
+      border-top: 1px solid rgba(201,162,39,0.3);
+      padding: 14px 20px;
+      text-align: center;
+      font-size: 9.5px;
+      color: rgba(201,162,39,0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── Scroll-reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 420px) {
+      .body { padding: 22px 20px; }
+      .keluarga, .doa { padding: 20px 20px; }
+      .kegiatan-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating particles -->
+<div id="particles"></div>
+
+<div class="page">
+  <div class="card">
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <div class="hero-corner-bl"></div>
+      <div class="hero-corner-br"></div>
+
+      <div class="bismillah">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+      <div class="bismillah-latin">Dengan Menyebut Nama Allah Yang Maha Pengasih Lagi Maha Penyayang</div>
+
+      <div class="hero-badge">✦ Undangan Tahlilan 7 Hari ✦</div>
+
+      <div style="display:flex;align-items:center;gap:10px;justify-content:center;opacity:0.5;">
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold));"></div>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5Z" fill="#c9a227"/>
+        </svg>
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent);"></div>
+      </div>
+    </div>
+
+    <!-- ── BODY ── -->
+    <div class="body">
+
+      <!-- Ornament + announce -->
+      <div class="ornament reveal">
+        <div class="ornament-line"></div>
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <path d="M10 1L11.8 8.2L19 10L11.8 11.8L10 19L8.2 11.8L1 10L8.2 8.2Z" fill="none" stroke="#c9a227" stroke-width="1" opacity="0.7"/>
+          <circle cx="10" cy="10" r="2" fill="#c9a227" opacity="0.7"/>
+        </svg>
+        <div class="ornament-line"></div>
+      </div>
+
+      <p class="announce reveal">
+        Assalamu'alaikum Warahmatullahi Wabarakatuh<br>
+        Dengan penuh keikhlasan dan berserah diri kepada Allah SWT,<br>
+        kami mengumumkan bahwa telah berpulang ke Rahmatullah
+      </p>
+
+      <!-- Name plate -->
+      <div class="name-plate reveal">
+        <div class="alm-label">Almarhum</div>
+        <div class="name-main">Saleh Eksan</div>
+        <div class="wafat-line">Wafat pada Kamis, 26 Maret 2026</div>
+      </div>
+
+      <!-- Innalillahi -->
+      <div class="inna reveal">
+        <div class="inna-arabic">إِنَّا لِلّٰهِ وَإِنَّآ إِلَيْهِ رَاجِعُوْنَ</div>
+        <div class="inna-latin">"Innā lillāhi wa innā ilayhi rāji'ūn"</div>
+      </div>
+
+      <div class="ornament reveal">
+        <div class="ornament-line"></div>
+        <svg width="14" height="14" viewBox="0 0 14 14">
+          <rect x="3" y="3" width="8" height="8" fill="none" stroke="#c9a227" stroke-width="1" transform="rotate(45 7 7)" opacity="0.6"/>
+          <circle cx="7" cy="7" r="1.5" fill="#c9a227" opacity="0.6"/>
+        </svg>
+        <div class="ornament-line"></div>
+      </div>
+
+      <!-- Info block -->
+      <div class="info-section reveal">
+        <div class="info-header">✦ Informasi Acara ✦</div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+          </div>
+          <div class="info-text">
+            <div class="info-label">Hari &amp; Tanggal</div>
+            <div class="info-value">Rabu, 1 April 2026</div>
+            <div class="info-sub">Malam ke-7 dari hari wafat beliau</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <div class="info-text">
+            <div class="info-label">Waktu</div>
+            <div class="info-value">Setelah Shalat Maghrib</div>
+            <div class="info-sub">± Pukul 18.30 WITA</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div class="info-text">
+            <div class="info-label">Tempat</div>
+            <div class="info-value">Rumah Duka</div>
+            <div class="info-sub">
+              Desa Reksonegoro, Kec. Tibawa<br>
+              Kabupaten Gorontalo, Provinsi Gorontalo
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kegiatan -->
+      <div class="kegiatan-title reveal">✦ Rangkaian Kegiatan ✦</div>
+      <div class="kegiatan-grid reveal">
+        <div class="kegiatan-item">
+          <div class="kegiatan-num">1</div>
+          <div class="kegiatan-name">Tahlil &amp; Tahmid</div>
+        </div>
+        <div class="kegiatan-item">
+          <div class="kegiatan-num">2</div>
+          <div class="kegiatan-name">Doa Bersama</div>
+        </div>
+      </div>
+
+      <!-- Hadir -->
+      <div class="hadir reveal">
+        <p>
+          Kehadiran Bapak / Ibu / Saudara/i sekalian<br>
+          <strong>sangat kami harapkan</strong> untuk mendoakan almarhum bersama-sama.<br>
+          Semoga Allah menerima amal ibadah beliau.
+        </p>
+      </div>
+
+    </div><!-- end .body -->
+
+    <!-- ── KELUARGA ── -->
+    <div class="keluarga reveal">
+      <div class="keluarga-label">✦ Diselenggarakan Oleh ✦</div>
+
+      <div class="ornament" style="margin:0 0 12px;">
+        <div class="ornament-line"></div>
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <path d="M6 0L7.2 4.8L12 6L7.2 7.2L6 12L4.8 7.2L0 6L4.8 4.8Z" fill="#c9a227" opacity="0.5"/>
+        </svg>
+        <div class="ornament-line"></div>
+      </div>
+
+      <div class="keluarga-names">
+        Keluarga Besar Eksan<br>
+        &amp; Keluarga Besar Rivai
+      </div>
+      <div class="keluarga-note">
+        Semoga menjadi amal jariyah bagi almarhum.<br>Aamiin Yaa Rabbal 'Aalamiin.
+      </div>
+    </div>
+
+    <!-- ── DOA ── -->
+    <div class="doa reveal">
+
+      <div class="ornament" style="margin-bottom:18px;opacity:0.5;">
+        <div class="ornament-line"></div>
+        <svg width="18" height="18" viewBox="0 0 18 18">
+          <path d="M9 1L10.5 7.5L17 9L10.5 10.5L9 17L7.5 10.5L1 9L7.5 7.5Z" fill="none" stroke="#c9a227" stroke-width="1.2"/>
+        </svg>
+        <div class="ornament-line"></div>
+      </div>
+
+      <div class="doa-arabic">اَللّٰهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهٖ وَاعْفُ عَنْهُ</div>
+      <div class="doa-latin">
+        "Allāhummaghfirlahu warhamhu wa 'āfihi wa'fu 'anhu"<br>
+        Ya Allah, ampunilah, rahmatilah, sehatkanlah<br>
+        dan maafkanlah beliau
+      </div>
+
+      <div class="ornament" style="margin-top:18px;opacity:0.5;">
+        <div class="ornament-line"></div>
+        <svg width="18" height="18" viewBox="0 0 18 18">
+          <path d="M9 1L10.5 7.5L17 9L10.5 10.5L9 17L7.5 10.5L1 9L7.5 7.5Z" fill="none" stroke="#c9a227" stroke-width="1.2"/>
+        </svg>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="footer">
+      Tahlilan 7 Hari · Almarhum Saleh Eksan · 1 April 2026 · Desa Reksonegoro, Gorontalo
+    </div>
+
+  </div><!-- end .card -->
+</div>
+
+<script>
+  // Particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      bottom: ${Math.random() * 20}%;
+      width: ${Math.random() < 0.4 ? 3 : 2}px;
+      height: ${Math.random() < 0.4 ? 3 : 2}px;
+      --dur: ${6 + Math.random() * 10}s;
+      --delay: ${Math.random() * 8}s;
+      --drift: ${(Math.random() - 0.5) * 60}px;
+      opacity: 0;
+    `;
+    container.appendChild(p);
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.05) + 's';
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
